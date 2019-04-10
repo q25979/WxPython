@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
 import wx
+import Login
 
 
 """
@@ -49,27 +50,29 @@ class Layout(wx.Frame):
 		self.SetMenuBar(menu_bar)
 
 
-	# 登录按钮
+	# 登录按钮响应事件
 	def OnLogin(self, event):
-		wx.MessageBox("You selected the simple menu item")
+		Login.Layout(self)
 
 
-	# 退出按钮
+	# 退出按钮响应事件
 	def OnExit(self, event):
 		self.Close()
 
 
-	# 指南按钮
+	# 指南按钮响应事件
 	def OnHelp(self, event):
 		pass
 
 
-	# 关于按钮
+	# 关于按钮响应事件
 	def OnAbout(self, event):
 		pass
 
 
-# 上班报表
+"""
+上班报表布局
+"""
 class PageUpWork(wx.Panel):
 	def __init__(self, parent):
 		super(PageUpWork, self).__init__(parent, size = (0, 0))
@@ -84,13 +87,13 @@ class PageUpWork(wx.Panel):
 		tx_number_recharge = wx.StaticText(self, -1, "充值人数", pos = (leftvolue, 160))
 		tx_number_online = wx.StaticText(self, -1, "在线人数", pos = (leftvolue, 190))
 
-		tc_amount_recharge = wx.TextCtrl(self, pos = (85, 8), size = (210, 20))
-		tc_amount_drawing  = wx.TextCtrl(self, pos = (85, 38), size = (210, 20))
-		tc_flow_volume  = wx.TextCtrl(self, pos = (85, 68), size = (210, 20))
-		tc_number_cnter = wx.TextCtrl(self, pos = (85, 98), size = (210, 20))
-		tc_number_register = wx.TextCtrl(self, pos = (85, 128), size = (210, 20))
-		tc_number_recharge = wx.TextCtrl(self, pos = (85, 158), size = (210, 20))
-		tc_number_online = wx.TextCtrl(self, pos = (85, 188), size = (210, 20))
+		self.tc_up_amount_recharge = wx.TextCtrl(self, pos = (85, 8), size = (210, 20))
+		self.tc_up_amount_drawing  = wx.TextCtrl(self, pos = (85, 38), size = (210, 20))
+		self.tc_up_flow_volume  = wx.TextCtrl(self, pos = (85, 68), size = (210, 20))
+		self.tc_up_number_cnter = wx.TextCtrl(self, pos = (85, 98), size = (210, 20))
+		self.tc_up_number_register = wx.TextCtrl(self, pos = (85, 128), size = (210, 20))
+		self.tc_up_number_recharge = wx.TextCtrl(self, pos = (85, 158), size = (210, 20))
+		self.tc_up_number_online = wx.TextCtrl(self, pos = (85, 188), size = (210, 20))
 
 		btn_sublime = wx.Button(self, -1, "提交", pos = (84, 215), size = (105, 25))
 		btn_empty   = wx.Button(self, -1, "清空", pos = (191, 215), size = (105, 25))
@@ -100,14 +103,28 @@ class PageUpWork(wx.Panel):
 
 
 	def OnSublime(self, event):
-		wx.MessageBox("Sublime")
+		down_amount_recharge = self.tc_up_amount_recharge.GetValue()
+		down_amount_drawing  = self.tc_up_amount_drawing.GetValue()
+		down_flow_volume  = self.tc_up_flow_volume.GetValue()
+		down_number_cnter = self.tc_up_number_cnter.GetValue()
+		down_number_register = self.tc_up_number_register.GetValue()
+		down_number_recharge = self.tc_up_number_recharge.GetValue()
+		down_number_online = self.tc_up_number_online.GetValue()
 
 
 	def OnEmpty(self, event):
-		wx.MessageBox("Empty")
+		self.tc_up_amount_recharge.SetValue("")
+		self.tc_up_amount_drawing.SetValue("")
+		self.tc_up_flow_volume.SetValue("")
+		self.tc_up_number_cnter.SetValue("")
+		self.tc_up_number_register.SetValue("")
+		self.tc_up_number_recharge.SetValue("")
+		self.tc_up_number_online.SetValue("")
 
 
-# 下班报表
+"""
+下班报表布局
+"""
 class PageDownWork(wx.Panel):
 	def __init__(self, parent):
 		super(PageDownWork, self).__init__(parent, size = (0, 0))
@@ -118,9 +135,9 @@ class PageDownWork(wx.Panel):
 		tx_number_register = wx.StaticText(self, -1, "注册人数", pos = (leftvolue, 40))
 		tx_number_recharge = wx.StaticText(self, -1, "充值人数", pos = (leftvolue, 70))
 
-		tc_number_cnter = wx.TextCtrl(self, pos = (85, 8), size = (210, 20))
-		tc_number_register = wx.TextCtrl(self, pos = (85, 38), size = (210, 20))
-		tc_number_recharge = wx.TextCtrl(self, pos = (85, 68), size = (210, 20))
+		self.tc_down_number_cnter = wx.TextCtrl(self, pos = (85, 8), size = (210, 20))
+		self.tc_down_number_register = wx.TextCtrl(self, pos = (85, 38), size = (210, 20))
+		self.tc_down_number_recharge = wx.TextCtrl(self, pos = (85, 68), size = (210, 20))
 
 		btn_sublime = wx.Button(self, -1, "提交", pos = (84, 95), size = (105, 25))
 		btn_empty   = wx.Button(self, -1, "清空", pos = (191, 95), size = (105, 25))
@@ -130,11 +147,15 @@ class PageDownWork(wx.Panel):
 
 
 	def OnSublime(self, event):
-		wx.MessageBox("Sublime")
+		down_amount_recharge = self.tc_down_number_cnter.GetValue()
+		down_number_register = self.tc_down_number_register.GetValue()
+		down_number_recharge = self.tc_down_number_recharge.GetValue()
 
 
 	def OnEmpty(self, event):
-		wx.MessageBox("Empty")
+		self.tc_down_number_cnter.SetValue("")
+		self.tc_down_number_register.SetValue("")
+		self.tc_down_number_recharge.SetValue("")
 
 
 class Home():
